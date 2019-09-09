@@ -8,6 +8,7 @@ class BaseEndpoint {
   // }
 
   createOne(data) {
+    // eslint-disable-next-line new-cap
     const entity = new this.model({ ...data });
     return entity.save();
   }
