@@ -3,12 +3,13 @@ require('./server/config/database');
 
 const express = require('express');
 const routes = require('./server/routes/router');
-// const apiRoutes = require('./server/routes/apiRoutes');
+const apiRoutes = require('./server/routes/apiRoutes');
 
 const app = express();
 
 app.use(express.json());
 app.use('/', routes);
+app.use('/api', apiRoutes);
 
 app.use('*', (_, res) => res.json({
   message: 'Hello world'

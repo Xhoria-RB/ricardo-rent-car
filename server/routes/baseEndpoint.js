@@ -3,9 +3,9 @@ class BaseEndpoint {
     this.model = _model;
   }
 
-  // getAll() {
-  //   return this.model.findAll().filter((item) => item.status);
-  // }
+  getAll() {
+    return this.model.find();
+  }
 
   createOne(data) {
     // eslint-disable-next-line new-cap
@@ -13,24 +13,21 @@ class BaseEndpoint {
     return entity.save();
   }
 
-  // getById(id) {
-  //   return this.model.findByPk(id)
-  //     .then((entity) => (entity.status ? entity : {}))
-  //     .catch((err) => err);
-  // }
+  getById(id) {
+    return this.model.findById(id);
+  }
 
   getByEmail(email) {
     return this.model.findOne({ email });
   }
 
-  // updateById(id, data) {
-  //   return this.getById(id)
-  //     .then((entity) => entity.update({ ...data }));
-  // }
+  updateById(id, data) {
+    return this.model.findByIdAndUpdate(id, data);
+  }
 
-  // deleteById(id) {
-  //   return this.updateById(id, { status: false });
-  // }
+  deleteById(id) {
+    return this.updateById(id, { status: false });
+  }
 }
 
 module.exports = BaseEndpoint;
