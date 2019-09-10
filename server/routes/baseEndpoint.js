@@ -1,10 +1,12 @@
+const options = { status: true };
+
 class BaseEndpoint {
   constructor(_model) {
     this.model = _model;
   }
 
   getAll() {
-    return this.model.find();
+    return this.model.find(options);
   }
 
   createOne(data) {
@@ -14,11 +16,11 @@ class BaseEndpoint {
   }
 
   getById(id) {
-    return this.model.findById(id);
+    return this.model.findById(id, options);
   }
 
   getByEmail(email) {
-    return this.model.findOne({ email });
+    return this.model.findOne({ email }, options);
   }
 
   updateById(id, data) {
