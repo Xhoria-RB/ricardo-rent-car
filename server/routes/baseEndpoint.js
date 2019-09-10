@@ -1,11 +1,13 @@
+const options = { status: true };
+
 class BaseEndpoint {
   constructor(_model) {
     this.model = _model;
   }
 
-  // getAll() {
-  //   return this.model.findAll().filter((item) => item.status);
-  // }
+  getAll() {
+    return this.model.find(options);
+  }
 
   createOne(data) {
     // eslint-disable-next-line new-cap
@@ -13,24 +15,21 @@ class BaseEndpoint {
     return entity.save();
   }
 
-  // getById(id) {
-  //   return this.model.findByPk(id)
-  //     .then((entity) => (entity.status ? entity : {}))
-  //     .catch((err) => err);
-  // }
-
-  getByEmail(email) {
-    return this.model.findOne({ email });
+  getById(id) {
+    return this.model.findById(id, options);
   }
 
-  // updateById(id, data) {
-  //   return this.getById(id)
-  //     .then((entity) => entity.update({ ...data }));
-  // }
+  getByEmail(email) {
+    return this.model.findOne({ email }, options);
+  }
 
-  // deleteById(id) {
-  //   return this.updateById(id, { status: false });
-  // }
+  updateById(id, data) {
+    return this.model.findByIdAndUpdate(id, data);
+  }
+
+  deleteById(id) {
+    return this.updateById(id, { status: false });
+  }
 }
 
 module.exports = BaseEndpoint;
