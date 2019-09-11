@@ -3,7 +3,6 @@ const isEmpty = require('lodash/isEmpty');
 const Rents = require('../models/Rent');
 const Cars = require('../models/Car');
 const BaseEndpoint = require('./baseEndpoint');
-const { ERRORS } = require('./helpers/constants');
 
 const rents = new BaseEndpoint(Rents);
 
