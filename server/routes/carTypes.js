@@ -5,11 +5,11 @@ const { ERRORS } = require('./helpers/constants');
 
 const carType = new BaseEndpoint(CarTypes);
 
-router.get('/car_types', async (_, res) => res.json(await carType.getAll()));
+router.get('/car_type', async (_, res) => res.json(await carType.getAll()));
 
-router.post('/car_types', async (req, res) => res.json(await carType.createOne(req.body)));
+router.post('/car_type', async (req, res) => res.json(await carType.createOne(req.body)));
 
-router.get('/car_types/:id', async (req, res) => {
+router.get('/car_type/:id', async (req, res) => {
   const carTypes = await carType.getById(req.params.id);
   if (!carTypes) {
     res.status(400).json({ error: ERRORS.incorrect_id });
@@ -17,7 +17,7 @@ router.get('/car_types/:id', async (req, res) => {
   res.json(carTypes);
 });
 
-router.put('/car_types/:id', async (req, res) => {
+router.put('/car_type/:id', async (req, res) => {
   try {
     res.json(await carType.updateById(req.params.id, req.body));
   }
@@ -26,7 +26,7 @@ router.put('/car_types/:id', async (req, res) => {
   }
 });
 
-router.delete('/car_types/:id', async (req, res) => {
+router.delete('/car_type/:id', async (req, res) => {
   try {
     res.json(await carType.deleteById(req.params.id));
   }

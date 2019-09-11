@@ -1,11 +1,13 @@
 const router = require('express').Router();
+const isEmpty = require('lodash/isEmpty');
 const Rents = require('../models/Rent');
-const Clients = require('../models/Client');
+const Cars = require('../models/Car');
 const BaseEndpoint = require('./baseEndpoint');
+const { ERRORS } = require('./helpers/constants');
 
 const rents = new BaseEndpoint(Rents);
 
-router.get('/rents', async (_, res) => {
+router.get('/rent', async (_, res) => {
   try {
     res.json(await rents.getAll());
   }
@@ -14,43 +16,32 @@ router.get('/rents', async (_, res) => {
   }
 });
 
-router.post('/rents', async (req, res) => {
+router.post('/rent', async (req, res) => {
   try {
-    res.json(await rents.createOne(req.body));
+    const rent = await rents.createOne(req.body);
+    if (!isEmpty(rent)) {
+      await Cars.findByIdAndUpdate(req.body.carID, { carStatus: 'Rented' });
+    }
+    res.json(rent);
   }
   catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.get('/rents/:id', async (req, res) => {
-  // try {
-  Rents.findAll({
-    where: {
-      id: req.params.id
-    },
-    include: [
-      { model: Clients, where: { id: 1 } }
-      // { model: Cars },
-      // { model: Employees }
-
-    ]
-  })
-    .then((rent) => {
-      res.json(rent);
-    })
-    .catch((err) => res.json(err));
-  //   if (isEmpty(searchedRents)) {
-  //     res.status(400).json({ error: ERRORS.incorrect_id });
-  //   }
-  //   res.json(searchedRents);
-  // }
-  // catch (err) {
-  //   res.status(500).json(err);
-  // }
+router.get('/rent/:id', async (req, res) => {
+  try {
+    res.json(await Rents.findById(req.params.id)
+      .populate('clientID')
+      .populate('employeeID')
+      .populate('carID'));
+  }
+  catch (err) {
+    res.status(500).json(err);
+  }
 });
 
-router.put('/rents/:id', async (req, res) => {
+router.put('/rent/:id', async (req, res) => {
   try {
     res.json(await rents.updateById(req.params.id, req.body));
   }
@@ -59,7 +50,7 @@ router.put('/rents/:id', async (req, res) => {
   }
 });
 
-router.delete('/rents/:id', async (req, res) => {
+router.delete('/rent/:id', async (req, res) => {
   try {
     res.json(await rents.deleteById(req.params.id));
   }

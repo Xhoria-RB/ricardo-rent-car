@@ -4,7 +4,7 @@ const BaseEndpoint = require('./baseEndpoint');
 
 const model = new BaseEndpoint(Model);
 
-router.get('/models', async (_, res) => {
+router.get('/model', async (_, res) => {
   try {
     res.json(await model.getAll());
   }
@@ -13,7 +13,7 @@ router.get('/models', async (_, res) => {
   }
 });
 
-router.post('/models', async (req, res) => {
+router.post('/model', async (req, res) => {
   try {
     res.json(await model.createOne(req.body));
   }
@@ -22,16 +22,17 @@ router.post('/models', async (req, res) => {
   }
 });
 
-router.get('/models/:id', async (req, res) => {
+router.get('/model/:id', async (req, res) => {
   try {
-    res.json(await model.getById(req.params.id));
+    res.json(await Model.findById(req.params.id)
+      .populate('brandID'));
   }
   catch (err) {
     res.status(500).json(err);
   }
 });
 
-router.put('/models/:id', async (req, res) => {
+router.put('/model/:id', async (req, res) => {
   try {
     res.json(await model.updateById(req.params.id, req.body));
   }
@@ -40,7 +41,7 @@ router.put('/models/:id', async (req, res) => {
   }
 });
 
-router.delete('/models/:id', async (req, res) => {
+router.delete('/model/:id', async (req, res) => {
   try {
     res.json(await model.deleteById(req.params.id));
   }

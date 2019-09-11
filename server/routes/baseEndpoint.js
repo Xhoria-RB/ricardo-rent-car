@@ -20,7 +20,7 @@ class BaseEndpoint {
   }
 
   getByEmail(email) {
-    return this.model.findOne({ email }, options);
+    return this.model.findOne({ email, ...options });
   }
 
   updateById(id, data) {

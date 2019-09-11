@@ -6,7 +6,7 @@ const validateID = require('./helpers/validateIDCard');
 
 const clients = new BaseEndpoint(Clients);
 
-router.get('/clients', async (_, res) => {
+router.get('/client', async (_, res) => {
   try {
     res.json(await clients.getAll());
   }
@@ -15,7 +15,7 @@ router.get('/clients', async (_, res) => {
   }
 });
 
-router.post('/clients', async (req, res) => {
+router.post('/client', async (req, res) => {
   try {
     if (validateID(req.body.idCard)) {
       res.json(await clients.createOne(req.body));
@@ -29,7 +29,7 @@ router.post('/clients', async (req, res) => {
   }
 });
 
-router.get('/clients/:id', async (req, res) => {
+router.get('/client/:id', async (req, res) => {
   try {
     res.json(await clients.getById(req.params.id));
   }
@@ -38,7 +38,7 @@ router.get('/clients/:id', async (req, res) => {
   }
 });
 
-router.put('/clients/:id', async (req, res) => {
+router.put('/client/:id', async (req, res) => {
   try {
     res.json(await clients.updateById(req.params.id, req.body));
   }
@@ -47,7 +47,7 @@ router.put('/clients/:id', async (req, res) => {
   }
 });
 
-router.delete('/clients/:id', async (req, res) => {
+router.delete('/client/:id', async (req, res) => {
   try {
     res.json(await clients.deleteById(req.params.id));
   }
