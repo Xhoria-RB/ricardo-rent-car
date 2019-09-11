@@ -9,7 +9,6 @@ const RentSchema = new Schema({
   pricePerDay: { type: Number, required: true },
   daysQt: { type: Number, required: true },
   comments: String,
-  carStatus: { type: String, required: true, enum: ['Rented', 'Available'] },
   status: { type: Boolean, default: true }
 });
 

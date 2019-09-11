@@ -5,9 +5,23 @@ const { ERRORS } = require('./helpers/constants');
 
 const brand = new BaseEndpoint(Brands);
 
-router.get('/brand', async (_, res) => res.json(await brand.getAll()));
+router.get('/brand', async (_, res) => {
+  try {
+    res.json(await brand.getAll());
+  }
+  catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-router.post('/brand', async (req, res) => res.json(await brand.createOne(req.body)));
+router.post('/brand', async (req, res) => {
+  try {
+    res.json(await brand.createOne(req.body));
+  }
+  catch (err) {
+    res.status(400).json(err);
+  }
+});
 
 router.get('/brand/:id', async (req, res) => {
   try {

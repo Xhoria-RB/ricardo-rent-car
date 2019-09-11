@@ -4,7 +4,7 @@ const BaseEndpoint = require('./baseEndpoint');
 
 const employees = new BaseEndpoint(Employees);
 
-router.get('/employees', async (_, res) => {
+router.get('/employee', async (_, res) => {
   try {
     res.json(await employees.getAll());
   }
@@ -13,7 +13,7 @@ router.get('/employees', async (_, res) => {
   }
 });
 
-router.get('/employees/:id', async (req, res) => {
+router.get('/employee/:id', async (req, res) => {
   try {
     res.json(await employees.getById(req.params.id));
   }
@@ -22,7 +22,7 @@ router.get('/employees/:id', async (req, res) => {
   }
 });
 
-router.put('/employees/:id', async (req, res) => {
+router.put('/employee/:id', async (req, res) => {
   try {
     res.json(await employees.updateById(req.params.id, req.body));
   }
@@ -31,7 +31,7 @@ router.put('/employees/:id', async (req, res) => {
   }
 });
 
-router.delete('/employees/:id', async (req, res) => {
+router.delete('/employee/:id', async (req, res) => {
   try {
     res.json(await employees.deleteById(req.params.id));
   }

@@ -8,5 +8,6 @@ router.use(require('./clients'));
 router.use(require('./rents'));
 router.use(require('./cars'));
 router.use(require('./fuelTypes'));
+router.use(require('./inspections'));
 
 module.exports = router;

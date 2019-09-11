@@ -4,7 +4,7 @@ const BaseEndpoint = require('./baseEndpoint');
 
 const fuelTypes = new BaseEndpoint(FuelType);
 
-router.get('/fuel_types', async (_, res) => {
+router.get('/fuel_type', async (_, res) => {
   try {
     res.json(await fuelTypes.getAll());
   }
@@ -13,7 +13,7 @@ router.get('/fuel_types', async (_, res) => {
   }
 });
 
-router.post('/fuel_types', async (req, res) => {
+router.post('/fuel_type', async (req, res) => {
   try {
     res.json(await fuelTypes.createOne(req.body));
   }
@@ -22,7 +22,7 @@ router.post('/fuel_types', async (req, res) => {
   }
 });
 
-router.get('/fuel_types/:id', async (req, res) => {
+router.get('/fuel_type/:id', async (req, res) => {
   try {
     res.json(await fuelTypes.getById(req.params.id));
   }
@@ -31,7 +31,7 @@ router.get('/fuel_types/:id', async (req, res) => {
   }
 });
 
-router.put('/fuel_types/:id', async (req, res) => {
+router.put('/fuel_type/:id', async (req, res) => {
   try {
     res.json(await fuelTypes.updateById(req.params.id, req.body));
   }
@@ -40,7 +40,7 @@ router.put('/fuel_types/:id', async (req, res) => {
   }
 });
 
-router.delete('/fuel_types/:id', async (req, res) => {
+router.delete('/fuel_type/:id', async (req, res) => {
   try {
     res.json(await fuelTypes.deleteById(req.params.id));
   }

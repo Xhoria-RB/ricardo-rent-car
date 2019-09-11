@@ -24,7 +24,11 @@ router.post('/car', async (req, res) => {
 
 router.get('/car/:id', async (req, res) => {
   try {
-    res.json(await cars.getById(req.params.id));
+    res.json(await Cars.findById(req.params.id)
+      .populate('carTypeID')
+      .populate('brandID')
+      .populate('modelID')
+      .populate('fuelTypeID'));
   }
   catch (err) {
     res.status(500).json(err);
