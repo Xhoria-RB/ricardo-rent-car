@@ -2,11 +2,13 @@ require('./server/config/config');
 require('./server/config/database');
 
 const express = require('express');
+const cors = require('cors');
 const routes = require('./server/routes/router');
 const apiRoutes = require('./server/routes/apiRoutes');
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use('/', routes);
 app.use('/api', apiRoutes);

@@ -34,13 +34,21 @@ router.post('/login', async (req, res) => {
     if (await bcrypt.compare(password, user.password)) {
       res.json({
         OK: true,
-        message: 'Loged in'
+        fullName: user.fullName,
+        email: user.email,
+        // eslint-disable-next-line no-underscore-dangle
+        id: user._id
+      });
+    }
+    else {
+      res.status(400).json({
+        error: ERRORS.incorrect_login
       });
     }
   }
   catch (err) {
-    res.status(400).json({
-      error: ERRORS.incorrect_login
+    res.status(500).json({
+      error: ERRORS.invalid_data
     });
   }
 });
