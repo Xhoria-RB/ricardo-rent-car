@@ -16,7 +16,7 @@ class BaseEndpoint {
   }
 
   getById(id) {
-    return this.model.findById(id, options);
+    return this.model.findById(id);
   }
 
   getByEmail(email) {
