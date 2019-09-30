@@ -8,7 +8,10 @@ const rents = new BaseEndpoint(Rents);
 
 router.get('/rent', async (_, res) => {
   try {
-    res.json(await rents.getAll());
+    res.json(await rents.getAll()
+      .populate('clientID')
+      .populate('employeeID')
+      .populate('carID'));
   }
   catch (err) {
     res.status(500).json(err);

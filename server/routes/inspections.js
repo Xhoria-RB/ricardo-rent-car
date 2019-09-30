@@ -6,7 +6,10 @@ const inspections = new BaseEndpoint(Inspections);
 
 router.get('/inspection', async (_, res) => {
   try {
-    res.json(await inspections.getAll());
+    res.json(await inspections.getAll()
+      .populate('clientID')
+      .populate('employeeID')
+      .populate('carID'));
   }
   catch (err) {
     res.status(500).json(err);

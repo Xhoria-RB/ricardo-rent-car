@@ -6,7 +6,9 @@ const cars = new BaseEndpoint(Cars);
 
 router.get('/car', async (_, res) => {
   try {
-    res.json(await cars.getAll());
+    res.json(await cars.getAll()
+      .populate('brandID')
+      .populate('modelID'));
   }
   catch (err) {
     res.status(500).json(err);
