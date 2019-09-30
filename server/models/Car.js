@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const CarSchema = new Schema({
+  entityName: { type: String, default: 'car' },
   description: { type: String, required: true },
   chasisNO: { type: String, required: true },
   motorNO: { type: String, required: true },

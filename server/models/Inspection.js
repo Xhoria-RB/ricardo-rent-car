@@ -1,6 +1,7 @@
 const { Schema, model } = require('mongoose');
 
 const InspectionSchema = new Schema({
+  entityName: { type: String, default: 'inspection' },
   carID: { type: Schema.Types.ObjectId, ref: 'Car', required: true },
   clientID: { type: Schema.Types.ObjectId, ref: 'Client', required: true },
   employeeID: { type: Schema.Types.ObjectId, ref: 'Employee', required: true },
