@@ -37,7 +37,8 @@ router.post('/login', async (req, res) => {
         fullName: user.fullName,
         email: user.email,
         // eslint-disable-next-line no-underscore-dangle
-        id: user._id
+        id: user._id,
+        role: user.role
       });
     }
     else {

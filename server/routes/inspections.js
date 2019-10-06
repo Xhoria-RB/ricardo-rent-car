@@ -30,7 +30,10 @@ router.get('/inspection/:id', async (req, res) => {
     res.json(await Inspections.findById(req.params.id)
       .populate('clientID')
       .populate('employeeID')
-      .populate('carID'));
+      .populate({
+        path: 'carID',
+        populate: { path: 'brandID modelID fuelTypeID carTypeID' }
+      }));
   }
   catch (err) {
     res.status(500).json(err);
