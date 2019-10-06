@@ -19,7 +19,7 @@ router.post('/brand', async (req, res) => {
     res.json(await brand.createOne(req.body));
   }
   catch (err) {
-    res.status(400).json(err);
+    res.status(400).json({ ...err, message: ERRORS.empty_data });
   }
 });
 
