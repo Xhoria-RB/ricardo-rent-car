@@ -7,7 +7,8 @@ const brand = new BaseEndpoint(Brands);
 
 router.get('/brand', async (_, res) => {
   try {
-    res.json(await brand.getAll());
+    res.json(await brand.getAll()
+      .sort({ description: 'asc' }));
   }
   catch (err) {
     res.status(500).json(err);

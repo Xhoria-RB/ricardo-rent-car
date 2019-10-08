@@ -8,7 +8,8 @@ const clients = new BaseEndpoint(Clients);
 
 router.get('/client', async (_, res) => {
   try {
-    res.json(await clients.getAll());
+    res.json(await clients.getAll()
+      .sort({ fullname: 'asc' }));
   }
   catch (err) {
     res.status(500).json(err);

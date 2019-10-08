@@ -6,7 +6,8 @@ const employees = new BaseEndpoint(Employees);
 
 router.get('/employee', async (_, res) => {
   try {
-    res.json(await employees.getAll());
+    res.json(await employees.getAll()
+      .sort({ fullname: 'asc' }));
   }
   catch (err) {
     res.status(500).json(err);

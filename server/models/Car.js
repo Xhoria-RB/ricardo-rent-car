@@ -10,7 +10,7 @@ const CarSchema = new Schema({
   brandID: { type: Schema.Types.ObjectId, ref: 'Brand', required: true },
   modelID: { type: Schema.Types.ObjectId, ref: 'Model', required: true },
   fuelTypeID: { type: Schema.Types.ObjectId, ref: 'FuelType', required: true },
-  carStatus: { type: String, required: true, enum: ['Rented', 'Available'] },
+  carStatus: { type: String, enum: ['Rented', 'Available'], default: 'Available' },
   status: { type: Boolean, default: true }
 });
 

@@ -5,7 +5,7 @@ const ClientSchema = new Schema({
   fullName: { type: String, required: [true, 'fullName is required'] },
   idCard: { type: String, required: [true, 'idCard is required'], unique: true },
   creditCard: { type: String, required: [true, 'idCard is required'], unique: true },
-  entity: { type: String, enum: ['F', 'J'], required: true },
+  entity: { type: String, enum: ['L', 'N'], required: true },
   status: { type: Boolean, default: true }
 });
 

@@ -9,7 +9,8 @@ router.get('/inspection', async (_, res) => {
     res.json(await inspections.getAll()
       .populate('clientID')
       .populate('employeeID')
-      .populate('carID'));
+      .populate('carID')
+      .sort({ inspectionDate: 'desc' }));
   }
   catch (err) {
     res.status(500).json(err);

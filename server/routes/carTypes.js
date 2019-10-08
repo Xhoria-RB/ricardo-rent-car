@@ -5,9 +5,24 @@ const { ERRORS } = require('./helpers/constants');
 
 const carType = new BaseEndpoint(CarTypes);
 
-router.get('/car_type', async (_, res) => res.json(await carType.getAll()));
+router.get('/car_type', async (_, res) => {
+  try {
+    res.json(await carType.getAll()
+      .sort({ description: 'asc' }));
+  }
+  catch (err) {
+    res.status(500).json(err);
+  }
+});
 
-router.post('/car_type', async (req, res) => res.json(await carType.createOne(req.body)));
+router.post('/car_type', async (req, res) => {
+  try {
+    res.json(await carType.createOne(req.body));
+  }
+  catch (err) {
+    res.status(500).json(err);
+  }
+});
 
 router.get('/car_type/:id', async (req, res) => {
   const carTypes = await carType.getById(req.params.id);
