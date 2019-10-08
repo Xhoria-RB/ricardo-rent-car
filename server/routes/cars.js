@@ -8,7 +8,8 @@ router.get('/car', async (_, res) => {
   try {
     res.json(await cars.getAll()
       .populate('brandID')
-      .populate('modelID'));
+      .populate('modelID')
+      .sort({ description: 'asc' }));
   }
   catch (err) {
     res.status(500).json(err);

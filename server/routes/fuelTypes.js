@@ -6,7 +6,8 @@ const fuelTypes = new BaseEndpoint(FuelType);
 
 router.get('/fuel_type', async (_, res) => {
   try {
-    res.json(await fuelTypes.getAll());
+    res.json(await fuelTypes.getAll()
+      .sort({ description: 'asc' }));
   }
   catch (err) {
     res.status(500).json(err);

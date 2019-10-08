@@ -6,7 +6,8 @@ const model = new BaseEndpoint(Model);
 
 router.get('/model', async (_, res) => {
   try {
-    res.json(await model.getAll());
+    res.json(await model.getAll()
+      .sort({ description: 'asc' }));
   }
   catch (err) {
     res.status(500).json(err);
