@@ -1,6 +1,6 @@
 # Rent a Car Proyect
 
-This is an app about renting cars. More details coming soon.
+This is a server containing a REST API to handle our data. It is build using Express.js and for the DB MongoDB with Mongoose as a ORM.
 
 ## Instructions
 Use the followings
@@ -9,31 +9,25 @@ Use the followings
 npm install
 cd client && npm install
 
-# To run server & client (5000 & 3000)
+# To run the server (on localhost:8000)
 npm run dev
 
-# To run server only
-npm run server
+# To run server on deploy
+npm run start
 
-# To run client only
-npm run client
+# To run linting tools
+npm run lint
 
-#Build for production
-cd client && npm run build
-
-#Graphiql http://localhost:5000/graphql 
 ```
+
 ## App details:
 ### Technologies:
 Back End (server):
  - Node.Js
  - Express.Js
- 
-
-Front-End (client): 
- - React.Js
- - React-Router
- 
+ - MongoDB
+ - Mongoose
+ - Bcrypt
 
 ### Author
 Ricardo Bibieca 
