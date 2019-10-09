@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const bcrypt = require('bcrypt');
 const Employees = require('../models/Employee');
 const BaseEndpoint = require('./baseEndpoint');
 
@@ -25,6 +26,9 @@ router.get('/employee/:id', async (req, res) => {
 
 router.put('/employee/:id', async (req, res) => {
   try {
+    if (req.body.password) {
+      req.body.password = await bcrypt.hash(req.body.password, 10);
+    }
     res.json(await employees.updateById(req.params.id, req.body));
   }
   catch (err) {
