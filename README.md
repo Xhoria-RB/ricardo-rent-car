@@ -19,6 +19,7 @@ npm run start
 npm run lint
 
 ```
+
 ## App details:
 ### Technologies:
 Back End (server):
