@@ -24,7 +24,7 @@ class BaseEndpoint {
   }
 
   updateById(id, data) {
-    return this.model.findByIdAndUpdate(id, data);
+    return this.model.findByIdAndUpdate(id, data, { new: true });
   }
 
   deleteById(id) {
