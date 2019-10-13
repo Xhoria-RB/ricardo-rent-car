@@ -1,5 +1,4 @@
 require('./server/config/config');
-require('./server/config/database');
 
 const express = require('express');
 const cors = require('cors');
@@ -18,7 +17,4 @@ app.use('*', (_, res) => res.json({
 }));
 
 
-app.listen(process.env.API_PORT, () => {
-  // eslint-disable-next-line no-console
-  console.log(`Server listening on port: ${process.env.API_PORT}`);
-});
+module.exports = app;
